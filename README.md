@@ -22,6 +22,34 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
+## Commandes utilisées
+
+### Création des composants
+- `ng generate component home`
+- `ng generate component about`
+
+### Configuration du routage
+Les routes ont été ajoutées dans le fichier `app.routes.ts` :
+```typescript
+export const routes: Routes = [
+  { path: 'home', component: HomeComponent },
+  { path: 'about', component: AboutComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' }
+];
+```
+
+### Configuration des providers
+Les routes sont fournies dans le fichier `app.config.ts` :
+```typescript
+export const appConfig: ApplicationConfig = {
+  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes)]
+};
+```
+
+## Routes fonctionnelles
+- `/home` : Page d'accueil
+- `/about` : Page "À propos"
+
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
