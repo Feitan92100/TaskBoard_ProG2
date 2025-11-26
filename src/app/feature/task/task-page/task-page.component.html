@@ -1,0 +1,27 @@
+<div class="task-page">
+  <h1>Gestion des Tâches</h1>
+
+  <div class="add-task">
+    <h2>Ajouter une tâche</h2>
+    <input #titleInput type="text" placeholder="Titre de la tâche">
+    <input #descInput type="text" placeholder="Description">
+    <button (click)="onAddTask(titleInput.value, descInput.value); titleInput.value=''; descInput.value=''">
+      Ajouter
+    </button>
+  </div>
+
+  <h2>Liste des tâches</h2>
+  
+  @if (tasks$ | async; as tasks) {
+    <ul>
+      @for (task of tasks; track task.id) {
+        <li>
+          <h3>{{ task.title }}</h3>
+          <p>{{ task.description }}</p>
+        </li>
+      }
+    </ul>
+  } @else {
+    <p>Chargement des tâches...</p>
+  }
+</div>
